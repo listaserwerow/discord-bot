@@ -3,6 +3,7 @@ const {token} = require('./config.json');
 const bot = new Discord.Client();
 bot.on('ready', () => {
 	console.log('\nBot zostal wlaczony');
+	client.user.setActivity("lsmc.pl", {type: "WATCHING"});
 });
 bot.on("guildMemberAdd", function(member) {
     member.guild.channels.find("name", "random").send(member.toString() + " dołączył na nasz serwer!")
