@@ -13,40 +13,41 @@ bot.on("guildMemberRemove", function(member) {
 	member.guild.channels.find("name", "random").send(member.toString() + " wyszedł z naszego serwera!")
 });
 bot.on('message', message => {
-	var cmdchannels = ["apokryf"]
+	var cmdchannels = ["apokryf"];
+		if (!cmdchannels.includes(message.channel.name)) {
+			return;
+		}
 	const args = message.content.slice(prefix.length).trim().split(/\s+/g);
 switch (args[0]) {
 	case "premium":
 		let nick = args[1];
 		request(`https://lsmc.pl/api/minecraft/haspaid/${nick}`, {json:true}, (error, response, body) => {
-			if (cmdchannels.includes(message.channel.name)) {
-				if (args.length < 2) {
-					message.channel.send("Poprawne użycie: !premium <nick>")
-				}
-				else {
-					message.channel.send(body === true ? 'To jest konto premium.' : 'To nie jest konto premium.')
-				}}
+			if (args.length < 2) {
+				message.channel.send("Poprawne użycie: !premium <nick>")
+			}
+			else {
+				message.channel.send(body === true ? 'To jest konto premium.' : 'To nie jest konto premium.')
+			}
 		});
 		break;
 	case "serwer":
 		let id = args[1];
 		request(`https://lsmc.pl/api/server/${id}`, {json:true}, (error, response, body) => {
-			if (cmdchannels.includes(message.channel.name)) {
-				if (args.length < 2) {
-					message.channel.send("Poprawne użycie: !serwer <id>")
-				}
-				else if (!body === true) {
-					message.channel.send("Wystąpił błąd podczas pobierania informacji z serwera.")
-				}
-				else {
-					message.channel.send(
-						new Discord.RichEmbed()
-							.addField("Informacje o serwerze", `${body.name}#${body.id}`)
-							.addField("Miejsce w rankingu", body.rank.voteRank)
-							.addField("Status", body.status.type === "ONLINE" ? `${body.status.onlinePlayers}/${body.status.maxPlayers}` : "Serwer jest offline")
-							.addField("Ilość głosów", body.votes > 0 ? `${body.votes}` : "0")
-							.setColor("BLUE")
-				)}}
+			if (args.length < 2) {
+				message.channel.send("Poprawne użycie: !serwer <id>")
+			}
+			else if (!body === true) {
+				message.channel.send("Wystąpił błąd podczas pobierania informacji z serwera.")
+			}
+			else {
+				message.channel.send(
+					new Discord.RichEmbed()
+						.addField("Informacje o serwerze", `${body.name}#${body.id}`)
+						.addField("Miejsce w rankingu", body.rank.voteRank)
+						.addField("Status", body.status.type === "ONLINE" ? `${body.status.onlinePlayers}/${body.status.maxPlayers}` : "Serwer jest offline")
+						.addField("Ilość głosów", body.votes > 0 ? `${body.votes}` : "0")
+						.setColor("BLUE")
+			)}
 		});
 		break;	
 	}
