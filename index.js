@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const {token} = require('./config.json');
+const {token, prefix} = require('./config.json');
 const request = require('request');
 const bot = new Discord.Client();
 bot.on('ready', () => {
@@ -13,6 +13,7 @@ bot.on("guildMemberRemove", function(member) {
 	member.guild.channels.find("name", "random").send(member.toString() + " wyszedł z naszego serwera!")
 });
 	var cmdchannels = ["apokryf"]
+	const args = message.content.slice(prefix.length).trim().split(/\s+/g);
 switch (args[0]) {
 	case "premium":
 		let nick = args[1];
