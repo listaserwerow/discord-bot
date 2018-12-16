@@ -21,14 +21,11 @@ switch (args[0]) {
 		request(`https://lsmc.pl/api/minecraft/haspaid/${nick}`, {json:true}, (error, response, body) => {
 			if (cmdchannels.includes(message.channel.name)) {
 				if (args.length < 2) {
-					message.channel.send("Musisz podać nazwę konta!")
+					message.channel.send("Poprawne użycie: !premium <nick>")
 				}
 				else {
 					message.channel.send(body === true ? 'To jest konto premium.' : 'To nie jest konto premium.')
 				}}
-			else {
-				message.channel.send(`Komendy możesz używać tylko na kanale #${cmdchannels}`)
-			}
 		});
 		break;
 	case "serwer":
@@ -36,7 +33,7 @@ switch (args[0]) {
 		request(`https://lsmc.pl/api/server/${id}`, {json:true}, (error, response, body) => {
 			if (cmdchannels.includes(message.channel.name)) {
 				if (args.length < 2) {
-					message.channel.send("Proszę podać nazwę serwera.")
+					message.channel.send("Poprawne użycie: !serwer <id>")
 				}
 				else if (!body === true) {
 					message.channel.send("Wystąpił błąd podczas pobierania informacji z serwera.")
@@ -50,9 +47,6 @@ switch (args[0]) {
 							.addField("Ilość głosów", body.votes > 0 ? `${body.votes}` : "0")
 							.setColor("BLUE")
 				)}}
-			else {
-				message.channel.send(`Komendy możesz używać tylko na kanale #${cmdchannels}`)
-			}
 		});
 		break;	
 	}
