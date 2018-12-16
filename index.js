@@ -21,12 +21,24 @@ bot.on('message', message => {
 switch (args[0]) {
 	case "premium":
 		let nick = args[1];
-		request(`https://lsmc.pl/api/minecraft/haspaid/${nick}`, {json:true}, (error, response, body) => {
+		request(`https://lsmc.pl/api/minecraft/name/${nick}`, {json:true}, (error, response, body) => {  body === true ? 'To jest konto premium.' : 'To nie jest konto premium.'
 			if (args.length < 2) {
 				message.channel.send("Poprawne użycie: !premium <nick>")
 			}
+			else if (body.error === true) {
+				message.channel.send(
+					new Discord.RichEmbed()
+						.setDescription("Gracz o takiej nazwie nie ma premium")
+						.setColor("RED")
+				)
+			}
 			else {
-				message.channel.send(body === true ? 'To jest konto premium.' : 'To nie jest konto premium.')
+				message.channel.send(
+					new Discord.RichEmbed()
+						.addField("Nick", body.name)
+						.addField("UUID", body.id)
+						.setColor("BLUE")
+				)
 			}
 		});
 		break;
