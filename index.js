@@ -12,6 +12,7 @@ bot.on("guildMemberAdd", function(member) {
 bot.on("guildMemberRemove", function(member) {
 	member.guild.channels.find("name", "random").send(member.toString() + " wyszedł z naszego serwera!")
 });
+bot.on('message', message => {
 	var cmdchannels = ["apokryf"]
 	const args = message.content.slice(prefix.length).trim().split(/\s+/g);
 switch (args[0]) {
@@ -53,6 +54,7 @@ switch (args[0]) {
 				message.channel.send(`Komendy możesz używać tylko na kanale #${cmdchannels}`)
 			}
 		});
-		break;
-}
+		break;	
+	}
+});
 bot.login(token);
