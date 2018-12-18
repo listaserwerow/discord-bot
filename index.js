@@ -19,7 +19,7 @@ bot.on('message', message => {
     if (!cmdchannels.includes(message.channel.name)) {
         return;
     }
-    if (message.indexOf(prefix) !== 0)
+    if (message.content.indexOf(prefix) !== 0)
     {
         return;
     }
