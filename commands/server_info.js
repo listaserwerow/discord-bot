@@ -1,8 +1,11 @@
+const request = require('request');
+
 module.exports.command = [ "server", "serverinfo", "serwer" ];
 
 module.exports.callback = function(args, message) {
   if (args.length < 1) {
     message.channel.send("Poprawne użycie: !serwer <id>")
+    return;
   }
 
   let id = args[0];
