@@ -1,7 +1,5 @@
 var commands = {};
 
-console.log("xxxxtest");
-
 require("fs").readdirSync("./commands").forEach(function(file) {
   if (file === "index.js")
   {
