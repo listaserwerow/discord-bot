@@ -8,9 +8,14 @@ const commands = require("./commands");
 
 bot.on('ready', () => {
     console.log('\nBot zostal wlaczony');
-    bot.user.setActivity("lsmc.pl", {
-        type: "WATCHING"
-    });
+
+	bot.user.setPresence({
+		status: "online",
+		game: {
+			name: "lsmc.pl",
+			url: "https://lsmc.pl"
+		}
+	});
 });
 bot.on("guildMemberAdd", function(member) {
     member.guild.channels.find("name", "random").send(member.toString() + " dołączył na nasz serwer!")
