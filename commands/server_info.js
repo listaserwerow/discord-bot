@@ -24,6 +24,6 @@ module.exports.callback = function(args, message) {
             .addField("Status", body.status.type === "ONLINE" ? `${body.status.onlinePlayers}/${body.status.maxPlayers}` : "Serwer jest offline")
             .addField("Ilość głosów", body.votes > 0 ? `${body.votes}` : "0")
             .setColor("BLUE")
-			.setFooter("", "https://lsmc.pl/banner/" + body.bannerName));
+			.setImage("https://lsmc.pl/banner/" + body.bannerName));
     });
 };
