@@ -12,7 +12,7 @@ module.exports.callback = function(args, message) {
     request(`https://lsmc.pl/api/server/${id}`, {
         json: true
     }, (error, response, body) => {
-		console.log(response.responseCode);
+        console.log(response.responseCode);
         if (!body === true) {
             message.channel.send("Wystąpił błąd podczas pobierania informacji z serwera.")
             return;
@@ -23,7 +23,7 @@ module.exports.callback = function(args, message) {
             .addField("Miejsce w rankingu", body.rank.voteRank)
             .addField("Status", body.status.type === "ONLINE" ? `${body.status.onlinePlayers}/${body.status.maxPlayers}` : "Serwer jest offline")
             .addField("Ilość głosów", body.votes > 0 ? `${body.votes}` : "0")
-            .setColor("BLUE"))
-			.setFooter("", "https://lsmc.pl/banner/" + body.bannerName);
+            .setColor("BLUE")
+			.setFooter("", "https://lsmc.pl/banner/" + body.bannerName));
     });
 };
