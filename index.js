@@ -13,7 +13,6 @@ bot.on('ready', () => {
 		status: "online",
 		game: {
 			name: "lsmc.pl",
-			url: "https://lsmc.pl"
 		}
 	});
 });
