@@ -17,7 +17,7 @@ bot.on("guildMemberAdd", function(member) {
     member.guild.channels.find("name", "random").send(member.toString() + " dołączył na nasz serwer!")
 });
 bot.on("guildMemberRemove", function(member) {
-    member.guild.channels.find("name", "random").send((member.nickname + "#" + member.user.discriminator) + " wyszedł z naszego serwera!")
+    member.guild.channels.find("name", "random").send((member.user.username + "#" + member.user.discriminator) + " wyszedł z naszego serwera!")
 });
 bot.on('message', message => {
 	if (message.author == bot.user)
