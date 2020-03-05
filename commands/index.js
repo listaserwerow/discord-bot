@@ -53,7 +53,7 @@ module.exports.callCommand = function(args, message) {
     if (!command) {
         return false;
     }
-    if (command.channel.indexOf("*") == -1 && command.channel.indexOf(channelName) == -1) {
+    if (command.channel.indexOf("*") === -1 && command.channel.indexOf(channelName) === -1) {
         return false;
     }
     command.callback(args.slice(2), message);

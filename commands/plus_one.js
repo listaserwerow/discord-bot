@@ -12,7 +12,7 @@ module.exports.callback = function(args, message) {
         return;
     }
 	message.mentions.users.forEach(user => {
-		if (user == message.author)
+		if (user === message.author)
 		{
 			message.channel.send(
                 new Discord.RichEmbed()

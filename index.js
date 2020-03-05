@@ -20,7 +20,7 @@ bot.on("guildMemberRemove", function(member) {
     member.guild.channels.find("name", "random").send((member.user.username + "#" + member.user.discriminator) + " wyszedł z naszego serwera!")
 });
 bot.on('message', message => {
-	if (message.author == bot.user)
+	if (message.author === bot.user)
 	{
 		return;
 	}

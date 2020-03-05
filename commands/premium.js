@@ -13,7 +13,7 @@ module.exports.callback = function(args, message) {
     request(`https://lsmc.pl/api/minecraft/name/${nick}`, {
         json: true
     }, (error, response, body) => {
-        if (response.statusCode == 404) {
+        if (response.statusCode === 404) {
             message.channel.send(
                 new Discord.RichEmbed()
 				.setTitle("Błąd")
@@ -22,7 +22,7 @@ module.exports.callback = function(args, message) {
             );
             return;
         }
-		if ((response.statusCode / 100) != 2) {
+		if ((response.statusCode / 100) !== 2) {
             message.channel.send(
                 new Discord.RichEmbed()
 				.setTitle("Błąd")
