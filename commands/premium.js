@@ -19,7 +19,7 @@ module.exports.callback = function(args, message) {
 				.setTitle("Błąd")
                 .setDescription("Gracz o takiej nazwie nie ma premium")
                 .setColor("RED")
-            )
+            );
             return;
         }
 		if ((response.statusCode / 100) != 2) {
@@ -28,7 +28,7 @@ module.exports.callback = function(args, message) {
 				.setTitle("Błąd")
                 .setDescription("Wystąpił błąd podczas pobierania informacji o użytkowniku")
                 .setColor("RED")
-            )
+            );
             return;
         }
         message.channel.send(

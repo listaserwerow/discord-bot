@@ -27,7 +27,7 @@ module.exports.callback = function(args, message) {
 				.setTitle("Błąd")
                 .setDescription("Wystąpił błąd podczas pobierania informacji o serwerze")
                 .setColor("RED")
-            )
+            );
             return;
         }
         message.channel.send(
