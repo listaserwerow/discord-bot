@@ -24,9 +24,9 @@ bot.on('message', message => {
 	{
 		return;
 	}
-    var content = message.content;
+    const content = message.content;
     if (content.length > 0) {
-        var prefix = content.slice(0, 1);
+        const prefix = content.slice(0, 1);
         const args = content.slice(prefix.length).trim().split(/\s+/g);
         if (commands.callCommand([prefix].concat(args), message)) {
             return;

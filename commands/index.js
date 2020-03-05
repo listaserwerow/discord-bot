@@ -1,35 +1,36 @@
 const config = require("./../config.json");
 
-var channels = [];
-var commands = {};
+const channels = [];
+const commands = {};
 
 require("fs").readdirSync("./commands").forEach(function(file) {
+    let i;
     if (file === "index.js") {
         return;
     }
-    var command = require("./" + file);
-    var channelList = command.channel || config.channels;
+    const command = require("./" + file);
+    let channelList = command.channel || config.channels;
     if (!(channelList instanceof Array)) {
         channelList = [channelList];
     }
     command.channel = channelList;
-    for (var i = 0; i < channelList.length; i++) {
+    for (i = 0; i < channelList.length; i++) {
         channels.indexOf(channelList[i]) == -1 && channels.push(channelList[i]);
     }
-    var prefixList = command.prefix || config.prefix;
+    let prefixList = command.prefix || config.prefix;
     if (!(prefixList instanceof Array)) {
         prefixList = [prefixList];
     }
     command.prefix = prefixList;
-    var commandList = command.command;
+    let commandList = command.command;
     if (!(commandList instanceof Array)) {
         commandList = [commandList];
     }
     command.command = commandList;
-    for (var x = 0; x < prefixList.length; x++) {
-        for (var i = 0; i < commandList.length; i++) {
-            var prefix = prefixList[x];
-            var commandPrefix = commands[prefix];
+    for (let x = 0; x < prefixList.length; x++) {
+        for (i = 0; i < commandList.length; i++) {
+            const prefix = prefixList[x];
+            let commandPrefix = commands[prefix];
             if (!commandPrefix) {
                 commandPrefix = [];
                 commands[prefix] = commandPrefix;
@@ -40,15 +41,15 @@ require("fs").readdirSync("./commands").forEach(function(file) {
 });
 
 module.exports.callCommand = function(args, message) {
-    var channelName = message.channel.name;
+    const channelName = message.channel.name;
     if (args.length < 2) {
         return false;
     }
-    var prefixList = commands[args[0]];
+    const prefixList = commands[args[0]];
     if (!prefixList) {
         return false;
     }
-    var command = prefixList[args[1]];
+    const command = prefixList[args[1]];
     if (!command) {
         return false;
     }

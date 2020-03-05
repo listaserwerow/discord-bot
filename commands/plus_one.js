@@ -22,7 +22,7 @@ module.exports.callback = function(args, message) {
             );
 			return;
 		}
-		var reputation = reputations[user.id];
+		let reputation = reputations[user.id];
 		if (!reputation)
 		{
 			reputation = {
@@ -34,7 +34,7 @@ module.exports.callback = function(args, message) {
 			};
 			reputations[user.id] = reputation;
 		}
-		var authorId = message.author.id;
+		const authorId = message.author.id;
 		if (reputation.awarded["+"].indexOf(authorId) >= 0)
 		{
 			message.channel.send(

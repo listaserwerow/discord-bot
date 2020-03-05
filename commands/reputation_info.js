@@ -16,9 +16,9 @@ module.exports.callback = function(args, message) {
         );
         return;
     }
-    var user = message.mentions.users.first();
-    var reputations = require("./../reputations.json");
-    var reputation = reputations[user.id];
+    const user = message.mentions.users.first();
+    const reputations = require("./../reputations.json");
+    let reputation = reputations[user.id];
     if (!reputation) {
         reputation = {
             rep: 0
